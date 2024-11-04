@@ -1,0 +1,54 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'assets/css/predict.css' %}"> 
+
+    <link rel="stylesheet" href="{% static 'assets/css/dashboard.css' %}"> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}GSC Fitness Dashboard{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'assets/css/styles.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet">
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+
+    {% block content %}
+    
+    <p class="dashboard-text">Input your Information {{request.user.first_name}} to Predict Your Burnt Calories </p>
+<br><br><br>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Predict</button>
+    </form>
+
+    {% if result %}
+        <h2> <p class="predict">Predicted Calories Burnt: {{ result }}</h2>
+    {% endif %}
+
+  <br>
+  <br>
+  <br>
+
+
+    <p class="dashboard-text">Go Back to Your <a href="{% url 'dashboard' %}">Dashboard</a> 
+
+ 
+
+
+
+
+
+
+
+    {% endblock %}
+
+    
+    {% block extra_js %}{% endblock %}
+
+   
+</body>
+</html>

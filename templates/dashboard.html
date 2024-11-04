@@ -1,0 +1,38 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'assets/css/dashboard.css' %}"> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}GSC Fitness Dashboard{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'assets/css/styles.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet">
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+
+    {% block content %}
+    
+    <p class="dashboard-text">Welcome to the dashboard! {{request.user.first_name}}</p>
+    <p class="dashboard-text">Predict Your Calories Burnt <a href="{% url 'predict' %}">Here</a> 
+    <p class="dashboard-text">You Can Change Your Password <a href="{% url 'password_change_form' %}">Here</a> </p>
+
+    <p class="dashboard-text"> <a href="{% url 'handlelogout' %}">logout </a> </p> 
+ 
+
+
+
+
+
+
+
+    {% endblock %}
+
+    
+    {% block extra_js %}{% endblock %}
+
+   
+</body>
+</html>

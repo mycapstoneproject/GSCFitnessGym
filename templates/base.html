@@ -1,0 +1,38 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}GSC Fitness{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'assets/css/styles.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet">
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+    <nav> 
+      
+        <div class="nav__logo">
+            <a href="{% url 'Home' %}"><img src="{% static 'assets/img/logo.png' %}" alt="logo"></a>
+        </div>
+        <ul class="nav__links">
+          <li class="link"><a href="{% url 'Home' %}">Home</a></li>
+          <li class="link"><a href="{% url 'Home' %}">Program</a></li>
+          <li class="link"><a href="{% url 'Home' %}">Pricing</a></li>
+          <li class="link"><a href="{% url 'Home' %}">About</a></li>
+          
+          <li class="link"><a href="{% url 'Home' %}">Inquiry</a></li>
+        </ul>
+        <a class="btn" href="{% url 'handlelogin' %}">Sign in</a>
+    </nav>
+
+    {% block content %}
+    {% endblock %}
+
+    
+    {% block extra_js %}{% endblock %}
+
+   
+</body>
+</html>

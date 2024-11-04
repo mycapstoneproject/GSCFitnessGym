@@ -1,0 +1,168 @@
+{% extends 'base.html' %}
+
+{% block title %} Log in- GSC Fitness{% endblock %}
+{% block head %}
+    
+    {% endblock %}
+
+{% block content %}
+<style>
+    #signup {
+        padding: 5rem 1rem;
+        border-radius: 5px;
+        box-shadow: 0 0 5px --white(0, 0, 0, 0.2);
+        
+    }
+
+    .signup__container {
+        max-width: 250px;
+        margin: auto;
+        text-align: center;
+    }
+
+    .signup__header {
+        font-size: 2rem;
+        font-weight: 600;
+        text-align: center;
+        color: var(--text-light); /* Ensure text color contrasts well */
+        margin-bottom: 2rem;
+    }
+
+    .signup__form {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .signup__form label {
+        font-size: 1rem;
+        font-weight: 500;
+        color: var(--text-light, #666);
+    }
+
+    .signup__form input[type="text"],
+    .signup__form input[type="email"],
+    .signup__form input[type="password"],
+    .signup__form input[type="number"] {
+        padding: 1rem;
+        font-size: 1rem;
+        border: 1px solid var(--text-light, #ddd);
+        border-radius: 5px;
+        background-color: var(--white, #fff);
+        color: var(--primary-color, --white#fff);
+    }
+
+    .signup__form input[type="text"]:focus,
+    .signup__form input[type="email"]:focus,
+    .signup__form input[type="password"]:focus,
+    .signup__form input[type="number"]:focus {
+        border-color: var(--secondary-color, #007bff);
+        outline: none;
+    }
+
+    .signup__form button {
+        padding: 1rem;
+        font-size: 1rem;
+        border: none;
+        color: var(--white, #fff);
+        background-color: var(--secondary-color, #007bff);
+        border-radius: 10px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        align-items: center; 
+    }
+
+    .signup__form button:hover {
+        background-color: var(--secondary-color-dark, #0056b3);
+    }
+
+    .already-user {
+        text-align: center;
+        margin-top: 1rem;
+    }
+
+    .already-user p {
+        
+        font-size: 1.4rem;
+        color: var(--text-light, #ffff);
+    }
+
+    .already-user .login-link {
+        color: var(--secondary-color, #007bff);
+        
+        text-decoration: none;
+        font-weight: bold;
+        
+    }
+    .already-user .login-admin {
+        padding: 1rem;
+    font-size: 1rem;
+    border: none;
+    color: var(--white, #fff);
+    background-color: var(--secondary-color, #007bff);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    }
+    .already-user .login-link:hover {
+        text-decoration: underline;
+    }
+
+    .alert {
+    margin-bottom: 1rem;
+    margin-bottom: 1rem;
+    color: #ffffff;
+    border-radius: 5px;
+    font-size: 10px;
+    text-align: center;
+    
+    }
+
+    
+</style>
+
+<section id="signup" class="section__container">
+    <h2 class="signup__header"> Please Login</h2>
+    <div class="signup__container">
+        <br>
+        
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            <strong></strong> {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+
+        <form action="{% url 'handlelogin' %}" method="post" class="signup__form">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <input type="number" class="form-control mb-2" name="usernumber" placeholder="Phone Number" required>
+            </div>
+
+            
+
+            <div class="form-group">
+                <input type="password" class="form-control mb-2" name="pass1" placeholder="Password" required>
+            </div>
+
+            
+
+            <div class="d-grid gap-2 mb-3">
+                <button class="btn btn-light" type="submit">Login</button>
+            </div>
+        </form>
+
+        <div class="already-user">
+             <p>New User? <a href="{% url 'signup' %}" class="login-link">Sign up</a></p>
+             <div>
+                <br><br>
+                
+                <p><a href="{% url 'admin:login' %}" class="login-admin">Login as ADMIN</a></p>
+
+             </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
